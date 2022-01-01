@@ -22,5 +22,6 @@
   //strip.ClearTo(RgbColor(lum, 0, 0));
 
 void espReboot() {
+  WiFi.softAPdisconnect(true);
   ESP.restart();
 }

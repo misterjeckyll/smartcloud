@@ -10,6 +10,7 @@ void serverInit() {
   server.on("/cloudReboot", cloudReboot);                 // Reboot the ball
   server.on("/scanNetwork", scanNetwork);               // Asking for available networks
   server.on("/setNetwork", HTTP_POST, setNetwork);      // Setting WiFi network parameters
+  server.on("/randomblink", randomblink);
   server.on("/simple", simple);
   
   server.onNotFound([]() {                              // If the client requests any URI
@@ -124,9 +125,18 @@ void captiveDnsUpdate() {
 void serverSend(String s){
   server.send(200, "text/html", s);
 }
-
+// ---------------------------------------------------------------------------------------------------
 void simple(){
-  simple_d.color = RgbColor(server.arg("r").toInt(),server.arg("g").toInt(),server.arg("b").toInt());
+  int r,b,g;
+  if(server.hasArg("r")) r = server.arg("r").toInt();
+  if(server.hasArg("g")) g = server.arg("g").toInt();
+  if(server.hasArg("b")) b = server.arg("b").toInt();
+
+  simple_d.color = RgbColor(r,g,b);
   effect = SIMPLE;
+  server.send(200);
+}
+void randomblink(){
+  effect = RANDBLINK;
   server.send(200);
 }

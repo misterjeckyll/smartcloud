@@ -1,4 +1,6 @@
+
 function ajaxGET(url, callback) {
+    console.log(url);
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
@@ -21,11 +23,7 @@ function getSSID() {
     });
 }
 function reboot() {
-    ajaxGET("./cloudReboot", function (){
-        if(this.status == 200) {
-            location.reload();
-        }
-    })
+    ajaxGET("./cloudReboot", function() {});
 }
 
 
@@ -45,7 +43,7 @@ document.getElementById("reboot-tab").addEventListener("click", function (event)
     if(!event.target.classList.contains("active")){
         reboot();
     }
-})
+});
 
 
 scanNetwork();
@@ -53,8 +51,8 @@ getSSID();
 
 
 var colorPicker = new iro.ColorPicker('#picker', {
-    wheelLightness:false,
-    color : "#1E90FF"
+    wheelLightness: false,
+    color : "rgb(15, 71, 128)"
 });
 
 const colorList = document.getElementById("colorList");
@@ -66,18 +64,36 @@ function setColor(colorIndex) {
 }
 
 colorPicker.on(["mount", "color:setActive", "color:change"], function(){
-  // colorPicker.color is always the active color
-  const index = colorPicker.color.index;
-  const hexString = colorPicker.color.hexString;
-  activeColor.innerHTML = `
-    <div class="swatch" style="background: ${ hexString }"></div>`;
+    // colorPicker.color is always the active color
+    const index = colorPicker.color.index;
+    var col = colorPicker.color.clone();
+    col.hsv = {h:col.hue,s:col.saturation,v:100};
+    const hexString = col.hexString;
+    activeColor.innerHTML = `<div class="swatch" style="background: ${ hexString }"></div>`;
 })
 
 colorPicker.on("input:end",function(color){
-    console.log(color.red, color.green, color.blue);
-    var request = "/simple?";
-    request = request.concat("r=",color.red,"&g=", color.green, "&b=", color.blue);
-    ajaxGET(request, function (){
-        console.log("color send");
-    })
+    switch(current){
+        case '/simple':
+            request = current.concat("?r=",color.red,"&g=", color.green, "&b=", color.blue);
+            ajaxGET(request, function(){});
+            break;
+    }
+    
+})
+
+var effects = ["randomblink","simple"];
+var current = "";
+$('#effects').on('slide.bs.carousel', function (e) {
+    current = "/"+effects[e.to];
+    switch(current){
+        case '/simple':
+            var color = colorPicker.color;
+            request = current.concat("?r=",color.red,"&g=", color.green, "&b=", color.blue);
+            ajaxGET(request, function(){});
+            break;
+        case '/randomblink':
+            ajaxGET(current, function(){});
+            break;
+    }
 })

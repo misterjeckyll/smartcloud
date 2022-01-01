@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html dir="ltr" lang="fr">
 
     <head>
@@ -102,33 +102,42 @@
                         <div class="text-center mb-3 col-lg-5 col-md-6 col-sm-8">
                             <div id="picker"></div>
                         </div>
-                        <div id="carouselExampleIndicators" class="carousel slide text-center bg-dark col-lg-7 col-md-6 col-sm-4" data-ride="carousel" data-interval="false">
-                        <ol class="carousel-indicators">
-                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                        </ol>
-                        <div class="carousel-inner text-light">
-                            <div class="carousel-item active">
-                                <h2>Couleur unique</h2>
-                                <div id="activeColor" class="activeColor"></div>
+                        <div class="col-lg-7 col-md-6 col-sm-4">
+                            <h2 class="text-center d-block">Effets</h2>
+                            <div id="effects" class="carousel slide text-center bg-dark " data-ride="carousel" data-interval="false">
+                            <ol class="carousel-indicators">
+                                <li data-target="#effects" data-slide-to="0" class="active"></li>
+                                <li data-target="#effects" data-slide-to="1"></li>
+                                <li data-target="#effects" data-slide-to="2"></li>
+                                <li data-target="#effects" data-slide-to="3"></li>
+                            </ol>
+                            <div class="carousel-inner text-light">
+                                <div class="carousel-item active">
+                                    <h2>Random blink</h2>
+                                    
+                                </div>
+                                <div class="carousel-item">
+                                    <h2>Couleur unique</h2>
+                                    <div id="activeColor" class="activeColor"></div>
+                                </div>
+                                <div class="carousel-item">
+                                    <h2>Flamme</h2>
+                                </div>
+                                <div class="carousel-item">
+                                    <h2>Orage</h2>
+                                </div>
                             </div>
-                            <div class="carousel-item">
-                                <h2>Flamme</h2>
-                            </div>
-                            <div class="carousel-item">
-                                <h2>Orage</h2>
-                            </div>
+                            <a class="carousel-control-prev text-primary" href="#effects" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#effects" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
                         </div>
-                        <a class="carousel-control-prev text-primary" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
+                        </div>
+                        
                     </div>
                     
                     
@@ -174,8 +183,8 @@
             </div>
 
 		</main>
-        <script src="js/jquery-3.2.1.slim.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="./js/jquery-3.2.1.slim.min.js"></script>
+        <script src="./js/bootstrap.min.js"></script>
 		<script src="./js/nuage.js"></script>
     </body>
 </html>
