@@ -11,6 +11,7 @@ void serverInit() {
   server.on("/scanNetwork", scanNetwork);               // Asking for available networks
   server.on("/setNetwork", HTTP_POST, setNetwork);      // Setting WiFi network parameters
   server.on("/randomblink", randomblink);
+  server.on("/snake", snakeReceive);
   server.on("/simple", simple);
   
   server.onNotFound([]() {                              // If the client requests any URI
@@ -71,8 +72,8 @@ void scanNetwork() {
 void setNetwork() {
   server.arg("ssid").toCharArray(wset.ssid, SSID_LEN);
   server.arg("pwd").toCharArray(wset.password, PWD_LEN);
+  server.send(200);
   saveWifiSettings();
-  server.send(200, "text/plain", "");
 }
 
 void cloudReboot(){
@@ -137,6 +138,18 @@ void simple(){
   server.send(200);
 }
 void randomblink(){
+  int lum = server.arg("v").toInt();
   effect = RANDBLINK;
+  setup_randblink(lum);
+  server.send(200);
+}
+
+void snakeReceive(){
+  
+  snake_d.startcol = RgbColor(server.arg("r0").toInt(),server.arg("g0").toInt(),server.arg("b0").toInt());
+  snake_d.endcol = RgbColor(server.arg("r1").toInt(),server.arg("g1").toInt(),server.arg("b1").toInt());
+  snake_d.currentcol = snake_d.startcol;
+  setup_snake();
+  effect = SNAKE;
   server.send(200);
 }

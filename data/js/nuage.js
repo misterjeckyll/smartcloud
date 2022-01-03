@@ -1,4 +1,6 @@
+/*jslint vars: true, plusplus: true, devel: true, nomen: true, indent: 4, maxerr: 50*/
 
+'use strict';
 function ajaxGET(url, callback) {
     console.log(url);
     var xhttp = new XMLHttpRequest();
@@ -12,18 +14,21 @@ function ajaxGET(url, callback) {
 }
 
 function scanNetwork() {
+    
     ajaxGET("./scanNetwork", function () {
         document.getElementById("ssid").innerHTML = this.responseText;
     });
 }
 
 function getSSID() {
+    
     ajaxGET("./getSSID", function () {
         document.getElementById("ballSSID").innerHTML = this.responseText;
     });
 }
 function reboot() {
-    ajaxGET("./cloudReboot", function() {});
+    
+    ajaxGET("./cloudReboot", function () {});
 }
 
 
@@ -31,6 +36,7 @@ function reboot() {
 var navItems = document.querySelectorAll(".mobile-bottom-nav .nav-link, .desktop-top-nav .nav-link");
 
 navItems.forEach(function (element, i) {
+    
 	element.addEventListener("click", function (event) {
 		navItems.forEach(function (e2, i2) {
 			e2.classList.remove("nav-active");
@@ -39,8 +45,9 @@ navItems.forEach(function (element, i) {
 	});
 });
 
-document.getElementById("reboot-tab").addEventListener("click", function (event){
-    if(!event.target.classList.contains("active")){
+document.getElementById("reboot-tab").addEventListener("click", function (event) {
+    
+    if (!event.target.classList.contains("active")) {
         reboot();
     }
 });
@@ -52,48 +59,73 @@ getSSID();
 
 var colorPicker = new iro.ColorPicker('#picker', {
     wheelLightness: false,
-    color : "rgb(15, 71, 128)"
+    colors : ["rgb(128, 128, 128)"]
 });
 
-const colorList = document.getElementById("colorList");
-const activeColor = document.getElementById("activeColor");
+colorPicker.setColors(["rgb(128, 128, 128)"]);
 
-function setColor(colorIndex) {
-  // setActiveColor expects the color index!
-  colorPicker.setActiveColor(colorIndex);
-}
-
-colorPicker.on(["mount", "color:setActive", "color:change"], function(){
-    // colorPicker.color is always the active color
-    const index = colorPicker.color.index;
-    var col = colorPicker.color.clone();
-    col.hsv = {h:col.hue,s:col.saturation,v:100};
-    const hexString = col.hexString;
-    activeColor.innerHTML = `<div class="swatch" style="background: ${ hexString }"></div>`;
-})
-
-colorPicker.on("input:end",function(color){
-    switch(current){
-        case '/simple':
-            request = current.concat("?r=",color.red,"&g=", color.green, "&b=", color.blue);
-            ajaxGET(request, function(){});
-            break;
+colorPicker.on(["mount", "color:setActive", "color:change"], function () {
+    for(let element of document.querySelectorAll(".colorList")){
+        element.innerHTML = '';
+        colorPicker.colors.forEach(color => {
+            let col = color.clone();
+            if(current != "/randomblink"){
+                col.hsv = {h: col.hue, s: col.saturation, v: 100};
+            }else{
+                col.saturation = 0;
+            }  
+            element.innerHTML += `<div class="swatch" style="background: ${ col.hexString }"></div>`;
+        });
     }
     
+});
+
+function sendEffect(effect) {
+    var request;
+    switch (effect) {
+    case '/simple':
+        var color = colorPicker.color;
+        request = effect.concat("?r=", color.red, "&g=", color.green, "&b=", color.blue);
+        break;
+    case '/randomblink':
+        var lum = colorPicker.color.value;
+        request = effect.concat("?v=", lum);
+        break;
+    case '/snake':
+        var colors = colorPicker.colors;
+        request = effect.concat("?d=0");
+        colors.forEach(color => {
+            request = request.concat("&r",color.index,"=",color.red);
+            request = request.concat("&g",color.index,"=",color.green);
+            request = request.concat("&b",color.index,"=",color.blue);
+        });
+        break;
+    default:
+        return;
+    }
+    ajaxGET(request, function(){});
+}
+
+colorPicker.on("input:end",function(color){
+    sendEffect(current);
 })
 
-var effects = ["randomblink","simple"];
-var current = "";
+var effects = ["randomblink","simple","snake"];
+var current = "/randomblink";
 $('#effects').on('slide.bs.carousel', function (e) {
     current = "/"+effects[e.to];
     switch(current){
         case '/simple':
-            var color = colorPicker.color;
-            request = current.concat("?r=",color.red,"&g=", color.green, "&b=", color.blue);
-            ajaxGET(request, function(){});
+            colorPicker.setColors(["rgb(15, 71, 128)"]);
+            sendEffect(current);
             break;
         case '/randomblink':
-            ajaxGET(current, function(){});
+            colorPicker.setColors(["rgb(128, 128, 128)"]);
+            sendEffect(current);
+            break;
+        case '/snake':
+            colorPicker.setColors(["rgb(15, 71, 128)","rgb(71, 15, 20)"]);
+            sendEffect(current);
             break;
     }
-})
+});

@@ -23,7 +23,7 @@ bool connectWifi() {
   bool state = true;
   while (WiFi.status() != WL_CONNECTED) {
     blinkRGB(RgbColor(50,30,0), 125, 125);
-    if (i > 20 || WiFi.status() == WL_CONNECT_FAILED) {
+    if (i > 50 || WiFi.status() == WL_CONNECT_FAILED) {
       state = false;
       WiFi.disconnect();
       for (byte n = 0; n < (4 * 4); n++) blinkRGB(RgbColor(30,0,0), 125, 125);
@@ -62,7 +62,7 @@ void initEEPROM() {
 
 void multicastDnsInit(void) {
   // Init the (currently empty) host domain string with 'esp8266'
-  if (!MDNS.begin("nuage", WiFi.localIP())) {
+  if (!MDNS.begin("nuage")) {
     Serial.println(" Error setting up MDNS responder!");
   }else{
     Serial.println("MDNS responder started at http://esp8266-4b35f1.local/");
