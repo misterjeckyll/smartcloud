@@ -5,6 +5,10 @@ body {
 	
 }
 
+#main, .desktop-top-nav{
+    padding-left: 5rem;
+}
+
 .spacement {
 	padding: 1.4rem 0 0 0;
 }
@@ -22,33 +26,11 @@ li li:before {
    content: '- ';
 }
 
-.btn {
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    -ms-border-radius: 0px;
-    -o-border-radius: 0px;
-    border-radius: 0px;
-    outline: none;
-    border: none;
-
-}
-.btn:active {
-  border-style: outset;
-  border: none;
-}
-
 .config-title {
 	display:inline-block;
 	width:140px;
 }
-.progress {
-    height: 30px;
-}
 
-.progress > svg {
-    height: 100%;
-    display: block;
-}
 
 .desktop-top-nav{
     display: block;
@@ -70,7 +52,9 @@ li li:before {
     line-height: 27px;
     text-align: center;
 }
-
+.form-switch{
+    margin-bottom: -0.8rem;
+}
 .nav-active{
     color : dodgerblue !important;
 }
@@ -89,6 +73,25 @@ li li:before {
   border-radius: 4px;
 }
 
+.nav-control{
+    position: fixed;
+    z-index: 2030;
+    left:0;
+    width: 5rem;
+    height: 100%;
+}
+
+.nav-control > div{
+    flex-direction: column;
+}
+#cloud-img{
+    width:3rem;
+    height: 1.8rem;
+    background: center / contain no-repeat url(../img/nuage_white.svg);
+}
+.nav-active #cloud-img{
+    background: center / contain no-repeat url(../img/nuage.svg);
+}
 @media (max-width: 751px) {
     .desktop-top-nav{
         display: None;
@@ -100,6 +103,18 @@ li li:before {
       font-size: 12px;
     }
     body{
-        padding-bottom: 6rem;
+        padding: 4.2rem 0 6rem 0;
+    }
+    .nav-control{
+        bottom: auto;
+        top: 0;
+        width: 100%;
+        height: auto;
+    }
+    .nav-control > div{
+        flex-direction: row;
+    }
+    #main{
+        padding-left: 0;
     }
 }

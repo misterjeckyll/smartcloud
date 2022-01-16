@@ -3,7 +3,7 @@
 'use strict';
 function ajaxGET(url, callback) {
     console.log(url);
-    var xhttp = new XMLHttpRequest();
+    let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             callback.call(this);
@@ -11,6 +11,24 @@ function ajaxGET(url, callback) {
     };
     xhttp.open("GET", url, true);
     xhttp.send();
+}
+
+function saveWifi(){
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            console.log("wifi settings saved");
+        }
+    };
+    xhttp.open("POST", "/setNetwork", true);
+    xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    let select_ssid = document.getElementById("ssid");
+    let ssid = select_ssid.options[select_ssid.selectedIndex].value;
+    console.log(ssid);
+    let pwd = document.getElementById("pwd").value;
+    console.log(pwd);
+    xhttp.send("ssid=" + ssid + "&pwd=" + pwd);
+
 }
 
 function scanNetwork() {
@@ -23,7 +41,7 @@ function scanNetwork() {
 function getSSID() {
     
     ajaxGET("./getSSID", function () {
-        document.getElementById("ballSSID").innerHTML = this.responseText;
+        document.getElementById("cloudSSID").innerHTML = this.responseText;
     });
 }
 function reboot() {
@@ -112,7 +130,7 @@ colorPicker.on("input:end",function(color){
 
 var effects = ["randomblink","simple","snake"];
 var current = "/randomblink";
-$('#effects').on('slide.bs.carousel', function (e) {
+document.getElementById("effects").addEventListener('slide.bs.carousel', function (e) {
     current = "/"+effects[e.to];
     switch(current){
         case '/simple':
