@@ -59,12 +59,26 @@ void getSSID() {
 
 void scanNetwork() {
   String options;
+  
   int n = WiFi.scanNetworks();
+  String detected[n];
   if (n == 0)
     options += "<option disabled selected>No network found...</option>";
   else {
-    for (int i = 0; i < n; ++i)
-      options += "<option>" + WiFi.SSID(i) + "</option>";
+    for (int i = 0; i < n; ++i){
+      String found = WiFi.SSID(i);
+      bool contain = false;
+      for(int j = 0; j<n; ++j){
+        if(found == detected[j]){
+          contain = true;
+          break;
+        }
+      }
+      if(contain)continue;
+      detected[i] = found;
+      options += "<option value='"+ found +"'>" + found + "</option>";
+    }
+      
   }
   server.send(200, "text/plain", options);
 }

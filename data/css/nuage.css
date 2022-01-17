@@ -8,7 +8,9 @@ body {
 #main, .desktop-top-nav{
     padding-left: 5rem;
 }
-
+.toastwrap{
+    z-index: 11;
+}
 .spacement {
 	padding: 1.4rem 0 0 0;
 }
@@ -53,7 +55,7 @@ li li:before {
     text-align: center;
 }
 .form-switch{
-    margin-bottom: -0.8rem;
+    margin-bottom: -1rem;
 }
 .nav-active{
     color : dodgerblue !important;
@@ -79,6 +81,8 @@ li li:before {
     left:0;
     width: 5rem;
     height: 100%;
+    top:0;
+    padding-top:4rem;
 }
 
 .nav-control > div{
@@ -110,6 +114,7 @@ li li:before {
         top: 0;
         width: 100%;
         height: auto;
+        padding-top:0;
     }
     .nav-control > div{
         flex-direction: row;

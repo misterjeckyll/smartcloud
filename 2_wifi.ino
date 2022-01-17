@@ -21,15 +21,21 @@ bool connectWifi() {
   WiFi.begin(wset.ssid, wset.password);
   int i = 0;
   bool state = true;
+  //wzdVptgoBkko5
+  //SNAKE EFFECT AS PENDING
+  snake_d.startcol = RgbColor(50,30,0);
+  snake_d.endcol = RgbColor(80,30,0);
+  snake_d.currentcol = snake_d.startcol;
+  setup_snake();
+  long last = millis();
   while (WiFi.status() != WL_CONNECTED) {
-    blinkRGB(RgbColor(50,30,0), 125, 125);
-    if (i > 50 || WiFi.status() == WL_CONNECT_FAILED) {
+    loop_snake();
+    if (millis() > last + 10000 || WiFi.status() == WL_CONNECT_FAILED) {
       state = false;
       WiFi.disconnect();
       for (byte n = 0; n < (4 * 4); n++) blinkRGB(RgbColor(30,0,0), 125, 125);
       break;
     }
-    i++;
   }
   return state;
 }

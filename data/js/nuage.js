@@ -1,12 +1,14 @@
 /*jslint vars: true, plusplus: true, devel: true, nomen: true, indent: 4, maxerr: 50*/
 
 'use strict';
-function ajaxGET(url, callback) {
+function ajaxGET(url, callback, error = undefined, ) {
     console.log(url);
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
-            callback.call(this);
+            if(callback) callback.call(this);
+        }else{
+            if(error) error.call(this);
         }
     };
     xhttp.open("GET", url, true);
@@ -45,8 +47,7 @@ function getSSID() {
     });
 }
 function reboot() {
-    
-    ajaxGET("./cloudReboot", function () {});
+    ajaxGET("./cloudReboot");
 }
 
 
@@ -121,7 +122,7 @@ function sendEffect(effect) {
     default:
         return;
     }
-    ajaxGET(request, function(){});
+    ajaxGET(request);
 }
 
 colorPicker.on("input:end",function(color){
@@ -147,3 +148,18 @@ document.getElementById("effects").addEventListener('slide.bs.carousel', functio
             break;
     }
 });
+
+
+for(let elm of document.querySelectorAll(".form-switch input")){
+    elm.addEventListener("change",function(e){
+        let state = elm.checked;
+        var request = "/";
+        request = request.concat(elm.id, "?state=", elm.checked ?1:0);
+        ajaxGET(request, undefined, function(){
+            elm.checked = !state;
+            let toa = document.getElementById("toastdisconnected");
+            var toast = new bootstrap.Toast(toa);
+            toast.show();
+        });
+    })
+}

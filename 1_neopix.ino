@@ -11,14 +11,14 @@ uint16_t lastPixel = 0; // track the eye position
 int8_t moveDir = 1; // track the direction of movement
 // uncomment one of the lines below to see the effects of
 // changing the ease function on the movement animation
-AnimEaseFunction moveEase = NeoEase::ExponentialInOut;
+AnimEaseFunction moveEase = NeoEase::QuadraticInOut;
 //      NeoEase::Linear;
 //      NeoEase::QuadraticInOut;
 //      NeoEase::CubicInOut;
 //        NeoEase::QuarticInOut;
 //      NeoEase::QuinticInOut;
 //      NeoEase::SinusoidalInOut;
-      
+// NeoEase::ExponentialInOut;
 //      NeoEase::CircularInOut;
 
 

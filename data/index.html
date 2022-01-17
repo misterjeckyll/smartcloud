@@ -111,6 +111,13 @@
             </div>
         </div>
     </nav>
+    <div class="position-fixed top-1 start-50 translate-middle-x toastwrap">
+        <div class="toast rounded" id="toastdisconnected">
+            <div class="toast-header">
+            Je n'arrive pas à communiquer avec le nuage
+            </div>
+        </div>
+    </div>
     <div id="main">
     <main class="container">
         <div class="tab-content">
@@ -135,7 +142,7 @@
                     </div>
                     <div class="col-lg-7 col-md-6 col-sm-12">
                         <h2 class="text-center d-block">Effets</h2>
-                        <div id="effects" class="carousel carousel-dark slide text-center" data-bs-ride="false">
+                        <div id="effects" class="carousel carousel-dark slide text-center" data-bs-interval="false">
                         <div class="carousel-indicators">
                             <button type="button" data-bs-target="#effects" data-bs-slide-to="0" class="active"></button>
                             <button type="button" data-bs-target="#effects" data-bs-slide-to="1"></button>
