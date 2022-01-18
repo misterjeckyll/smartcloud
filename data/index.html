@@ -9,9 +9,134 @@
     <!-- Bootstrap CSS -->
 
     <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/nuage.css">
     <title>Nuage magique</title>
-    <script src="./js/iro.min.js"></script>
+    <style>
+        html {
+          font-size: 1rem;
+        }
+        body {
+
+        }
+
+        #main, .desktop-top-nav{
+            padding-left: 5rem;
+        }
+        .toastwrap{
+            z-index: 11;
+        }
+        .spacement {
+            padding: 1.4rem 0 0 0;
+        }
+
+        .spacement p {
+            padding: 1rem 1rem;
+        }
+
+        li ul {
+           list-style-type: none;
+           padding-left : 0px;
+        }
+
+        li li:before {
+           content: '- ';
+        }
+
+        .config-title {
+            display:inline-block;
+            width:140px;
+        }
+
+
+        .desktop-top-nav{
+            display: block;
+        }
+        .mobile-bottom-nav{
+            display:None;
+            position: fixed;
+            bottom:0;
+            right: 0;
+            left: 0;
+            top: auto;
+            box-shadow: 0 -2px 5px -2px #333;
+            z-index: 2030;
+        }
+        .mobile-bottom-nav .nav-link{
+            color: white;
+        }
+        .desktop-top-nav .nav-link{
+            line-height: 27px;
+            text-align: center;
+        }
+        .form-switch{
+            margin-bottom: -1rem;
+        }
+        .nav-active{
+            color : dodgerblue !important;
+        }
+
+        .carousel-inner{
+            height: 200px;
+            text-align: center;
+        }
+        .colorList{
+            width: 70%;
+            margin: 0 auto;
+        }
+        .swatch {
+          height: 32px;
+          margin: 4px 0;
+          border-radius: 4px;
+        }
+
+        .nav-control{
+            position: fixed;
+            z-index: 2030;
+            left:0;
+            width: 5rem;
+            height: 100%;
+            top:0;
+            padding-top:4rem;
+        }
+
+        .nav-control > div{
+            flex-direction: column;
+        }
+        #cloud-img{
+            width:3rem;
+            height: 1.8rem;
+            background: center / contain no-repeat url(../img/nuage_white.svg);
+        }
+        .nav-active #cloud-img{
+            background: center / contain no-repeat url(../img/nuage.svg);
+        }
+        @media (max-width: 751px) {
+            .desktop-top-nav{
+                display: None;
+            }
+            .mobile-bottom-nav{
+                display: block;
+            }
+            html {
+              font-size: 12px;
+            }
+            body{
+                padding: 4.2rem 0 6rem 0;
+            }
+            .nav-control{
+                bottom: auto;
+                top: 0;
+                width: 100%;
+                height: auto;
+                padding-top:0;
+            }
+            .nav-control > div{
+                flex-direction: row;
+            }
+            #main{
+                padding-left: 0;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -137,7 +262,7 @@
                     <p>Selection des couleurs et des effets lumineux</p>
                 </div>
                 <div class="row px-3">
-                    <div class="text-center mb-3 col-lg-5 col-md-6 col-sm-8">
+                    <div class="d-flex justify-content-center mb-3 col col-lg-4 col-md-6 col-sm-8 col-xs-2 m-auto">
                         <div id="picker"></div>
                     </div>
                     <div class="col-lg-7 col-md-6 col-sm-12">
@@ -224,6 +349,174 @@
     </main>
     </div>
     <script src="./js/bootstrap.min.js"></script>
-    <script src="./js/nuage.js"></script>
+    <script>
+    
+        function ajaxGET(url, callback, error = undefined) {
+            console.log(url);
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    if(callback !== undefined) callback.call(this);
+                }else if(this.readyState === 4 && this.status !== 200){
+                    if(error !== undefined) error.call(this);
+                }
+            };
+            xhttp.open("GET", url, true);
+            xhttp.send();
+        }
+
+        function saveWifi(){
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    console.log("wifi settings saved");
+                }
+            };
+            xhttp.open("POST", "/setNetwork", true);
+            xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            let select_ssid = document.getElementById("ssid");
+            let ssid = select_ssid.options[select_ssid.selectedIndex].value;
+            console.log(ssid);
+            let pwd = document.getElementById("pwd").value;
+            console.log(pwd);
+            xhttp.send("ssid=" + ssid + "&pwd=" + pwd);
+
+        }
+
+        function scanNetwork() {
+
+            ajaxGET("./scanNetwork", function () {
+                document.getElementById("ssid").innerHTML = this.responseText;
+            });
+        }
+
+        function getSSID() {
+
+            ajaxGET("./getSSID", function () {
+                document.getElementById("cloudSSID").innerHTML = this.responseText;
+            });
+        }
+        function reboot() {
+            ajaxGET("./cloudReboot");
+        }
+
+
+
+        var navItems = document.querySelectorAll(".mobile-bottom-nav .nav-link, .desktop-top-nav .nav-link");
+
+        navItems.forEach(function (element, i) {
+
+            element.addEventListener("click", function (event) {
+                navItems.forEach(function (e2, i2) {
+                    e2.classList.remove("nav-active");
+                });
+                this.classList.add("nav-active");
+            });
+        });
+
+        document.getElementById("reboot-tab").addEventListener("click", function (event) {
+            reboot();
+        });
+
+
+        scanNetwork();
+        getSSID();
+
+
+        var colorPicker = new iro.ColorPicker('#picker', {
+            wheelLightness: false,
+            width:310,
+            display:"inline-block",
+            handleRadius : 9,
+            activeHandleRadius : 11,
+            colors : ["rgb(128, 128, 128)"]
+        });
+        let container = colorPicker.base;
+        console.log(container);
+
+        colorPicker.setColors(["rgb(128, 128, 128)"]);
+
+        colorPicker.on(["mount", "color:setActive", "color:change"], function () {
+            for(let element of document.querySelectorAll(".colorList")){
+                element.innerHTML = '';
+                colorPicker.colors.forEach(color => {
+                    let col = color.clone();
+                    if(current != "/randomblink"){
+                        col.hsv = {h: col.hue, s: col.saturation, v: 100};
+                    }else{
+                        col.saturation = 0;
+                    }  
+                    element.innerHTML += `<div class="swatch" style="background: ${ col.hexString }"></div>`;
+                });
+            }
+
+        });
+
+        function sendEffect(effect) {
+            var request;
+            switch (effect) {
+            case '/simple':
+                var color = colorPicker.color;
+                request = effect.concat("?r=", color.red, "&g=", color.green, "&b=", color.blue);
+                break;
+            case '/randomblink':
+                var lum = colorPicker.color.value;
+                request = effect.concat("?v=", lum);
+                break;
+            case '/snake':
+                var colors = colorPicker.colors;
+                request = effect.concat("?d=0");
+                colors.forEach(color => {
+                    request = request.concat("&r",color.index,"=",color.red);
+                    request = request.concat("&g",color.index,"=",color.green);
+                    request = request.concat("&b",color.index,"=",color.blue);
+                });
+                break;
+            default:
+                return;
+            }
+            ajaxGET(request);
+        }
+
+        colorPicker.on("input:end",function(color){
+            sendEffect(current);
+        })
+
+        var effects = ["randomblink","simple","snake"];
+        var current = "/randomblink";
+        document.getElementById("effects").addEventListener('slide.bs.carousel', function (e) {
+            current = "/"+effects[e.to];
+            switch(current){
+                case '/simple':
+                    colorPicker.setColors(["rgb(15, 71, 128)"]);
+                    sendEffect(current);
+                    break;
+                case '/randomblink':
+                    colorPicker.setColors(["rgb(128, 128, 128)"]);
+                    sendEffect(current);
+                    break;
+                case '/snake':
+                    colorPicker.setColors(["rgb(15, 71, 128)","rgb(71, 15, 20)"]);
+                    sendEffect(current);
+                    break;
+            }
+        });
+
+
+        for(let elm of document.querySelectorAll(".form-switch input")){
+            elm.addEventListener("change",function(e){
+                let state = elm.checked;
+                var request = "/";
+                request = request.concat(elm.id, "?state=", elm.checked ?1:0);
+                ajaxGET(request, function(){
+                }, function(){
+                    elm.checked = !state;
+                    let toa = document.getElementById("toastdisconnected");
+                    var toast = new bootstrap.Toast(toa);
+                    toast.show();
+                });
+            })
+        }
+    </script>
 </body>
 </html>

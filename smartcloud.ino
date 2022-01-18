@@ -18,7 +18,7 @@ void setup() {
   Serial.println();
   Serial.println("Cloud initialisation...");
   setup_neopix();
-  blinkRGB(RgbColor(50,50,128), 500, 125);
+  blinkRGB(RgbColor(50,50,128), 1000, 125);
   initEEPROM();
   
   if (connectWifi()) {

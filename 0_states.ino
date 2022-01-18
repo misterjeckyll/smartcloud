@@ -5,7 +5,7 @@
 // ANIM : Color animation
 // WEATHER : Tell the weather with animation
 // REACTIVE : Listen to sound and react to it
-enum STATE {OFF, SLEEP, ANIM, WEATHER, REACTIVE};
+enum STATE {OFF, ANIM, SLEEP, WEATHER, REACTIVE};
 
 // RANDBLINK : fade to a random color and back
 // SIMPLE : set to One color

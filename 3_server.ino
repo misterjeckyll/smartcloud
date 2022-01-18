@@ -8,6 +8,7 @@ void serverInit() {
   server.on("/", handleRoot);                           // Which routine to handle at root location. This is display page
   server.on("/getSSID", getSSID);                       // Asking for actual network SSID
   server.on("/cloudReboot", cloudReboot);                 // Reboot the ball
+  server.on("/power", power);
   server.on("/scanNetwork", scanNetwork);               // Asking for available networks
   server.on("/setNetwork", HTTP_POST, setNetwork);      // Setting WiFi network parameters
   server.on("/randomblink", randomblink);
@@ -82,7 +83,11 @@ void scanNetwork() {
   }
   server.send(200, "text/plain", options);
 }
-
+void power(){
+  int power = server.arg("state").toInt();
+  state = (STATE) power;
+  server.send(200);
+}
 void setNetwork() {
   server.arg("ssid").toCharArray(wset.ssid, SSID_LEN);
   server.arg("pwd").toCharArray(wset.password, PWD_LEN);
