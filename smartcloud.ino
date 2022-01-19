@@ -7,8 +7,8 @@
 #include <DNSServer.h>
 #include <ESP8266mDNS.h>
 #include <ArduinoOTA.h>
-#include <ESP8266WebServer.h>
-#include <FS.h>                // SPIFFS management
+#include <ESP8266WebServer.h>           
+#include <LittleFS.h>
 #include "header/cloud.h"
 
 bool serverMode;
@@ -17,6 +17,7 @@ void setup() {
   Serial.begin(115200);
   Serial.println();
   Serial.println("Cloud initialisation...");
+  FSinit();
   setup_neopix();
   blinkRGB(RgbColor(50,50,128), 1000, 125);
   initEEPROM();

@@ -1,0 +1,226 @@
+<!doctype html>
+<html dir="ltr" lang="fr">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <title>Nuage magique</title>
+    <link rel="stylesheet" href="./css/nuage.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark desktop-top-nav">
+        <div class="container me-auto d-flex flex-row justify-content-start ">
+            <div class="nav navbar-nav">
+                <a class="navbar-brand" href="#color">
+                    <img src="./img/nuage.svg" width="30" height="30" class="d-inline-block align-text-top me-2 text-white"  alt="">Nuage magique
+                </a>
+                <a class="nav-item nav-link text-center active nav-active text-white" id="color-tab" data-bs-toggle="tab" href="#color" >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" fill="currentColor" class="bi bi-palette" viewBox="0 0 16 16">
+                      <path d="M8 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm4 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM5.5 7a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm.5 6a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                      <path d="M16 8c0 3.15-1.866 2.585-3.567 2.07C11.42 9.763 10.465 9.473 10 10c-.603.683-.475 1.819-.351 2.92C9.826 14.495 9.996 16 8 16a8 8 0 1 1 8-8zm-8 7c.611 0 .654-.171.655-.176.078-.146.124-.464.07-1.119-.014-.168-.037-.37-.061-.591-.052-.464-.112-1.005-.118-1.462-.01-.707.083-1.61.704-2.314.369-.417.845-.578 1.272-.618.404-.038.812.026 1.16.104.343.077.702.186 1.025.284l.028.008c.346.105.658.199.953.266.653.148.904.083.991.024C14.717 9.38 15 9.161 15 8a7 7 0 1 0-7 7z"/>
+                    </svg>
+                    Couleurs
+                </a>
+                <a class="nav-item nav-link text-center text-white" id="alarm-tab" data-bs-toggle="tab" href="#alarm">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
+                      <path d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z"/>
+                      <path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z"/>
+                    </svg>
+                    Reveil
+                </a>
+                <a class="nav-item nav-link text-center text-white" id="wifi-tab" data-bs-toggle="tab" href="#wifi">
+                   <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" fill="currentColor" class="bi bi-wifi" viewBox="0 0 16 16">
+                       <path d="M15.384 6.115a.485.485 0 0 0-.047-.736A12.444 12.444 0 0 0 8 3C5.259 3 2.723 3.882.663 5.379a.485.485 0 0 0-.048.736.518.518 0 0 0 .668.05A11.448 11.448 0 0 1 8 4c2.507 0 4.827.802 6.716 2.164.205.148.49.13.668-.049z"/>
+                       <path d="M13.229 8.271a.482.482 0 0 0-.063-.745A9.455 9.455 0 0 0 8 6c-1.905 0-3.68.56-5.166 1.526a.48.48 0 0 0-.063.745.525.525 0 0 0 .652.065A8.46 8.46 0 0 1 8 7a8.46 8.46 0 0 1 4.576 1.336c.206.132.48.108.653-.065zm-2.183 2.183c.226-.226.185-.605-.1-.75A6.473 6.473 0 0 0 8 9c-1.06 0-2.062.254-2.946.704-.285.145-.326.524-.1.75l.015.015c.16.16.407.19.611.09A5.478 5.478 0 0 1 8 10c.868 0 1.69.201 2.42.56.203.1.45.07.61-.091l.016-.015zM9.06 12.44c.196-.196.198-.52-.04-.66A1.99 1.99 0 0 0 8 11.5a1.99 1.99 0 0 0-1.02.28c-.238.14-.236.464-.04.66l.706.706a.5.5 0 0 0 .707 0l.707-.707z"/>
+                   </svg>
+                    Wifi
+                </a>
+                <a class="ms-2 nav-link btn btn-outline-light border border-light rounded text-center" id="reboot-tab" data-bs-toggle="tab" href="#reboot">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+                      <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
+                      <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
+                    </svg>
+                    Reboot
+                </a>
+            </div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mobile-bottom-nav">
+
+        <div class="nav me-auto d-flex flex-row justify-content-around" role="tablist">                
+            <a class="nav-item nav-link text-center active nav-active" id="color-tab" data-bs-toggle="tab" href="#color" >
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1.8rem" height="1.8rem" fill="currentColor" class="bi bi-palette" viewBox="0 0 16 16">
+                      <path d="M8 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm4 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM5.5 7a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm.5 6a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                      <path d="M16 8c0 3.15-1.866 2.585-3.567 2.07C11.42 9.763 10.465 9.473 10 10c-.603.683-.475 1.819-.351 2.92C9.826 14.495 9.996 16 8 16a8 8 0 1 1 8-8zm-8 7c.611 0 .654-.171.655-.176.078-.146.124-.464.07-1.119-.014-.168-.037-.37-.061-.591-.052-.464-.112-1.005-.118-1.462-.01-.707.083-1.61.704-2.314.369-.417.845-.578 1.272-.618.404-.038.812.026 1.16.104.343.077.702.186 1.025.284l.028.008c.346.105.658.199.953.266.653.148.904.083.991.024C14.717 9.38 15 9.161 15 8a7 7 0 1 0-7 7z"/>
+                    </svg>
+                </div>
+                Couleurs
+            </a>
+            <a class="nav-item nav-link text-center" id="alarm-tab" data-bs-toggle="tab" href="#alarm">
+                <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="1.8rem" height="1.8rem" fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
+                      <path d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z"/>
+                      <path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z"/>
+                    </svg>
+                </div>
+                Reveil
+            </a>
+            
+            <a class="nav-item nav-link text-center" id="wifi-tab" data-bs-toggle="tab" href="#wifi">
+                <div>
+                   <svg xmlns="http://www.w3.org/2000/svg" width="1.8rem" height="1.8rem" fill="currentColor" class="bi bi-wifi" viewBox="0 0 16 16">
+                       <path d="M15.384 6.115a.485.485 0 0 0-.047-.736A12.444 12.444 0 0 0 8 3C5.259 3 2.723 3.882.663 5.379a.485.485 0 0 0-.048.736.518.518 0 0 0 .668.05A11.448 11.448 0 0 1 8 4c2.507 0 4.827.802 6.716 2.164.205.148.49.13.668-.049z"/>
+                       <path d="M13.229 8.271a.482.482 0 0 0-.063-.745A9.455 9.455 0 0 0 8 6c-1.905 0-3.68.56-5.166 1.526a.48.48 0 0 0-.063.745.525.525 0 0 0 .652.065A8.46 8.46 0 0 1 8 7a8.46 8.46 0 0 1 4.576 1.336c.206.132.48.108.653-.065zm-2.183 2.183c.226-.226.185-.605-.1-.75A6.473 6.473 0 0 0 8 9c-1.06 0-2.062.254-2.946.704-.285.145-.326.524-.1.75l.015.015c.16.16.407.19.611.09A5.478 5.478 0 0 1 8 10c.868 0 1.69.201 2.42.56.203.1.45.07.61-.091l.016-.015zM9.06 12.44c.196-.196.198-.52-.04-.66A1.99 1.99 0 0 0 8 11.5a1.99 1.99 0 0 0-1.02.28c-.238.14-.236.464-.04.66l.706.706a.5.5 0 0 0 .707 0l.707-.707z"/>
+                   </svg>
+               </div>
+                Wifi
+            </a>
+        </div>
+    </nav>
+    <nav class="nav-control bg-dark text-light">
+        <div class="navbar-expand d-flex justify-content-around gap-3 fs-3">
+            <div class="text-center">
+                <div class="form-switch"><input class="form-check-input" type="checkbox" id="power" checked></div>
+                <label class="form-check-label fs-6" for="power">
+                    Power
+                </label>
+            </div>
+            <div class="text-center">
+                <div class="form-switch">
+                    <input class="form-check-input" type="checkbox" id="micro" checked>
+                </div>
+                <label class="form-check-label fs-6" for="micro">
+                    Micro
+                </label>
+            </div>
+            <div class="text-center">
+                <div class="form-switch">
+                    <input class="form-check-input" type="checkbox" id="alarm-switch" checked>
+                </div>
+                <label class="form-check-label fs-6" for="alarm-switch">
+                    Reveil
+                </label>
+            </div>
+        </div>
+    </nav>
+    <div class="position-fixed top-1 start-50 translate-middle-x toastwrap">
+        <div class="toast rounded" id="toastdisconnected">
+            <div class="toast-header">
+            Je n'arrive pas à communiquer avec le nuage
+            </div>
+        </div>
+    </div>
+    <div id="main">
+    <main class="container">
+        <div class="tab-content">
+            <div class="tab-pane fade show" id="reboot" aria-labelledby="reboot-tab">
+                <div class="pt-3 pb-3">
+                    <h1>Relancement du nuage</h1>
+                    <p class="lead">Le nuage va maintenant se reinitialiser et essayer de se connecter à son réseau paramétré.</p>
+                    <p>
+                        Connectez vous au même réseau wifi sauvegardé pour le nuage et retrouvez cette page à l'adresse
+                        <a href="http://esp8266-4b35f1.local/">http://esp8266-4b35f1.local/</a>
+                    </p>
+                </div>
+            </div>
+            <div class="tab-pane fade show active" id="color" aria-labelledby="color-tab">
+                <div class="pt-3 pb-3">
+                    <h1>Nuage magique</h1>
+                    <p>Selection des couleurs et des effets lumineux</p>
+                </div>
+                <div class="row px-3">
+                    <div class="d-flex justify-content-center mb-3 col col-lg-4 col-md-6 col-sm-8 col-xs-2 m-auto">
+                        <div id="picker"></div>
+                    </div>
+                    <div class="col-lg-7 col-md-6 col-sm-12">
+                        <h2 class="text-center d-block">Effets</h2>
+                        <div id="effects" class="carousel carousel-dark slide text-center" data-bs-interval="false">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#effects" data-bs-slide-to="0" class="active"></button>
+                            <button type="button" data-bs-target="#effects" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#effects" data-bs-slide-to="2"></button>
+                            <button type="button" data-bs-target="#effects" data-bs-slide-to="3"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <h2>Random blink</h2>
+                                <div class="colorList"></div>
+                                <p>Luminosité</p>
+                            </div>
+                            <div class="carousel-item">
+                                <h2>Couleur unique</h2>
+                                <div class="colorList"></div>
+                            </div>
+                            <div class="carousel-item">
+                                <h2>Serpent</h2>
+                                <div class="colorList"></div>
+                            </div>
+                            <div class="carousel-item">
+                                <h2>Orage</h2>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-slide="prev" data-bs-target="#effects">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next"  role="button" data-bs-slide="next" data-bs-target="#effects">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+                    </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="tab-pane fade show" id="alarm" aria-labelledby="alarm-tab">
+                <div class="pt-3 pb-3">
+                    <h1>Nuage magique</h1>
+                    <p class="lead">Réveil lumineux</p>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="wifi" aria-labelledby="wifi-tab">
+                <div class="pt-3 pb-3">
+                    <h1>Nuage magique</h1>
+                    <p class="lead">Utilisez ce formulaire pour me donner accès à internet avec une connection wifi</p>
+                </div>
+                <div>
+                    <h4 class="mb-3">Configuration WiFi <span class="ms-5 fs-5" id="cloudSSID">-</span> </h4> 
+
+                    <form class="needs-validation" method="post" onsubmit="saveWifi();return false;">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="ssid">Nom de réseaux SSID</label>
+                                <select class="form-select" id="ssid" name="ssid">
+                                <option disabled selected>Selectionnez votre wifi....</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="pwd">Mot de passe</label>
+                                <input type="password" class="form-control" id="pwd" name="pwd" placeholder="mot de passe">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="d-grid gap-2 d-sm-block col col-md-6 col-sm-6">
+                                <button class="btn btn-primary btn-lg" type="button" onclick="scanNetwork()">Scanner</button>
+                            </div>
+                            <div class="d-grid gap-2 d-sm-block col col-md-6 col-sm-6">
+                                <button class="btn btn-success btn-lg" type="submit">Sauvegarder</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    </div>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/iro.min.js"></script>
+    <script src="js/nuage.js"></script>
+</body>
+</html>

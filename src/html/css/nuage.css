@@ -1,0 +1,125 @@
+html {
+  font-size: 1rem;
+}
+body {
+
+}
+
+#main, .desktop-top-nav{
+    padding-left: 5rem;
+}
+.toastwrap{
+    z-index: 11;
+}
+.spacement {
+    padding: 1.4rem 0 0 0;
+}
+
+.spacement p {
+    padding: 1rem 1rem;
+}
+
+li ul {
+   list-style-type: none;
+   padding-left : 0px;
+}
+
+li li:before {
+   content: '- ';
+}
+
+.config-title {
+    display:inline-block;
+    width:140px;
+}
+
+
+.desktop-top-nav{
+    display: block;
+}
+.mobile-bottom-nav{
+    display:None;
+    position: fixed;
+    bottom:0;
+    right: 0;
+    left: 0;
+    top: auto;
+    box-shadow: 0 -2px 5px -2px #333;
+    z-index: 2030;
+}
+.mobile-bottom-nav .nav-link{
+    color: white;
+}
+.desktop-top-nav .nav-link{
+    line-height: 27px;
+    text-align: center;
+}
+.form-switch{
+    margin-bottom: -1rem;
+}
+.nav-active{
+    color : dodgerblue !important;
+}
+
+.carousel-inner{
+    height: 200px;
+    text-align: center;
+}
+.colorList{
+    width: 70%;
+    margin: 0 auto;
+}
+.swatch {
+  height: 32px;
+  margin: 4px 0;
+  border-radius: 4px;
+}
+
+.nav-control{
+    position: fixed;
+    z-index: 2030;
+    left:0;
+    width: 5rem;
+    height: 100%;
+    top:0;
+    padding-top:4rem;
+}
+
+.nav-control > div{
+    flex-direction: column;
+}
+#cloud-img{
+    width:3rem;
+    height: 1.8rem;
+    background: center / contain no-repeat url(../img/nuage_white.svg);
+}
+.nav-active #cloud-img{
+    background: center / contain no-repeat url(../img/nuage.svg);
+}
+@media (max-width: 751px) {
+    .desktop-top-nav{
+        display: None;
+    }
+    .mobile-bottom-nav{
+        display: block;
+    }
+    html {
+      font-size: 12px;
+    }
+    body{
+        padding: 4.2rem 0 6rem 0;
+    }
+    .nav-control{
+        bottom: auto;
+        top: 0;
+        width: 100%;
+        height: auto;
+        padding-top:0;
+    }
+    .nav-control > div{
+        flex-direction: row;
+    }
+    #main{
+        padding-left: 0;
+    }
+}
