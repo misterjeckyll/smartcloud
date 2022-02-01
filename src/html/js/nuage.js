@@ -164,3 +164,77 @@ for(let elm of document.querySelectorAll(".form-switch input")){
         });
     })
 }
+window.addEventListener('load', function () {
+    if(window.matchMedia("(max-width: 751px)").matches){
+        console.log("small screen mode");
+    }else{
+        console.log("large screen mode");
+        
+        let lum = document.getElementById("lum");
+        let lumparent = document.getElementById("lumparent");
+        let width = lumparent.clientHeight;
+        console.log(width + "px");
+        lum.style.width = width + "px";
+        lum.style.transformOrigin = width/2 + "px " + width/2 + "px";
+    }
+    
+})
+
+
+/*
+ drag button interact
+*/
+interact('.draggable')
+  .draggable({
+    // enable inertial throwing
+    inertia: true,
+    startAxis:'y',
+    // keep the element within the area of it's parent
+    modifiers: [
+      interact.modifiers.restrictRect({
+        restriction: 'parent',
+        endOnly: true
+      })
+    ],
+    // enable autoScroll
+    autoScroll: true,
+    lockAxis: 'y',
+    listeners: {
+      // call this function on every dragmove event
+      move: dragMoveListener,
+
+      // call this function on every dragend event
+      end (event) {
+        var textEl = event.target.querySelector('p')
+      }
+    }
+  })
+
+function dragMoveListener (event) {
+    var target = event.target
+
+    // keep the dragged position in the data-x/data-y attributes
+    let x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
+    let y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy
+    let fullheight = document.getElementById("slider").clientHeight;
+    
+    let percent = Math.round((y/(fullheight-target.clientHeight))*1000000)/10000;
+    var secondsInADay = 24 * 60 * 60;
+    let numberofseconds = Math.round(percent * secondsInADay / 100);
+    let selectedTime = new Date();
+    selectedTime.setUTCHours(-1,0,0,0);
+    
+    
+    selectedTime.setSeconds(numberofseconds);
+    let timestring = selectedTime.toLocaleTimeString({hour:'2-digit'});
+    target.querySelector(".time").textContent = timestring.slice(0,-3);
+
+    // translate the element
+    target.style.transform = 'translate(' + x + 'px, ' + y + 'px)'
+
+    // update the posiion attributes
+    target.setAttribute('data-x', x)
+    target.setAttribute('data-y', y)
+    
+    
+}

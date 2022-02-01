@@ -92,11 +92,6 @@ void serverUpdate() {
   server.handleClient();
 }
 
-void OTAInit() {
-  ArduinoOTA.setHostname("NUAGE");
-  ArduinoOTA.begin();
-}
-
 void OTAUpdate() {
   ArduinoOTA.handle();
 }

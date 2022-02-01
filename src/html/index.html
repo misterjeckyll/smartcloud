@@ -82,30 +82,46 @@
         </div>
     </nav>
     <nav class="nav-control bg-dark text-light">
-        <div class="navbar-expand d-flex justify-content-around gap-3 fs-3">
-            <div class="text-center">
-                <div class="form-switch"><input class="form-check-input" type="checkbox" id="power" checked></div>
-                <label class="form-check-label fs-6" for="power">
-                    Power
+        <div class="navbar-expand d-flex flex-wrap gap-1 fs-4" style="height: 100%">
+            <div class="text-center switches">
+                <label class="fs-6" for="power">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-power" viewBox="0 0 16 16">
+                      <path d="M7.5 1v7h1V1h-1z"/>
+                      <path d="M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z"/>
+                    </svg>
                 </label>
+                <div class="form-switch">
+                    <input class="form-check-input" type="checkbox" id="power" checked>
+                </div>
             </div>
-            <div class="text-center">
+            <div class="text-center switches">
+                <label class="fs-6" for="power">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mic" viewBox="0 0 16 16">
+                      <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"/>
+                      <path d="M10 8a2 2 0 1 1-4 0V3a2 2 0 1 1 4 0v5zM8 0a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V3a3 3 0 0 0-3-3z"/>
+                    </svg>
+                </label>
                 <div class="form-switch">
                     <input class="form-check-input" type="checkbox" id="micro" checked>
                 </div>
-                <label class="form-check-label fs-6" for="micro">
-                    Micro
-                </label>
             </div>
-            <div class="text-center">
+            <div class="text-center switches">
+                <label class="fs-6" for="power">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
+                      <path d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z"/>
+                      <path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z"/>
+                    </svg>
+                </label>
                 <div class="form-switch">
                     <input class="form-check-input" type="checkbox" id="alarm-switch" checked>
                 </div>
-                <label class="form-check-label fs-6" for="alarm-switch">
-                    Reveil
-                </label>
             </div>
+            <div class="px-3 fs-6" id="lumparent">
+                <input type="range" class="form-range" min="0" max="255" step="10" id="lum">
+            </div>
+            
         </div>
+        
     </nav>
     <div class="position-fixed top-1 start-50 translate-middle-x toastwrap">
         <div class="toast rounded" id="toastdisconnected">
@@ -128,16 +144,9 @@
                 </div>
             </div>
             <div class="tab-pane fade show active" id="color" aria-labelledby="color-tab">
-                <div class="pt-3 pb-3">
-                    <h1>Nuage magique</h1>
-                    <p>Selection des couleurs et des effets lumineux</p>
-                </div>
                 <div class="row px-3">
-                    <div class="d-flex justify-content-center mb-3 col col-lg-4 col-md-6 col-sm-8 col-xs-2 m-auto">
-                        <div id="picker"></div>
-                    </div>
+                    
                     <div class="col-lg-7 col-md-6 col-sm-12">
-                        <h2 class="text-center d-block">Effets</h2>
                         <div id="effects" class="carousel carousel-dark slide text-center" data-bs-interval="false">
                         <div class="carousel-indicators">
                             <button type="button" data-bs-target="#effects" data-bs-slide-to="0" class="active"></button>
@@ -147,20 +156,20 @@
                         </div>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <h2>Random blink</h2>
+                                <h2>Effet: Random blink</h2>
                                 <div class="colorList"></div>
                                 <p>Luminosité</p>
                             </div>
                             <div class="carousel-item">
-                                <h2>Couleur unique</h2>
+                                <h2>Effet: Couleur unique</h2>
                                 <div class="colorList"></div>
                             </div>
                             <div class="carousel-item">
-                                <h2>Serpent</h2>
+                                <h2>Effet: Serpent</h2>
                                 <div class="colorList"></div>
                             </div>
                             <div class="carousel-item">
-                                <h2>Orage</h2>
+                                <h2>Effet: Orage</h2>
                             </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-slide="prev" data-bs-target="#effects">
@@ -171,6 +180,9 @@
                         </button>
                     </div>
                     </div>
+                    <div class="d-flex justify-content-center mb-3 col col-lg-4 col-md-6 col-sm-8 col-xs-2 m-auto">
+                        <div id="picker"></div>
+                    </div>
 
                 </div>
 
@@ -178,13 +190,38 @@
             </div>
             <div class="tab-pane fade show" id="alarm" aria-labelledby="alarm-tab">
                 <div class="pt-3 pb-3">
-                    <h1>Nuage magique</h1>
                     <p class="lead">Réveil lumineux</p>
                 </div>
+                <button class="btn btn-icon btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                    </svg>
+                </button>
+                <div id="day" class="d-flex">
+                    <div id="slider" class="flex-grow-1">
+                        <div class="draggable d-flex flex-row justify-content-between align-items-center">
+                            <div class="btn btn-icon btn-outline-primary drag " draggable="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" fill="currentColor" class="bi bi-grip-horizontal" viewBox="0 0 16 16">
+                                <path d="M2 8a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                            </svg>
+                            </div>
+                            <div class="flex-grow-1" style="border-bottom: 1px dashed #aaa;text-align: center;height:0">
+                                <div class="time fs-1"></div>
+                            </div>
+                            <div class="btn btn-icon btn-danger">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                  <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
+                                  <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
             </div>
             <div class="tab-pane fade" id="wifi" aria-labelledby="wifi-tab">
                 <div class="pt-3 pb-3">
-                    <h1>Nuage magique</h1>
                     <p class="lead">Utilisez ce formulaire pour me donner accès à internet avec une connection wifi</p>
                 </div>
                 <div>
@@ -221,6 +258,7 @@
     </div>
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/iro.min.js"></script>
+    <script src="js/interact.min.js"></script>
     <script src="js/nuage.js"></script>
 </body>
 </html>

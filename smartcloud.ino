@@ -1,11 +1,11 @@
 #include <NeoPixelBus.h>
 #include <NeoPixelAnimator.h>
 #include <WiFiUdp.h>
-#include <WiFiClient.h>
 #include <EEPROM.h>
-#include <ESP8266WiFi.h>
 #include <DNSServer.h>
+#include <ESP8266WiFi.h>
 #include <ESP8266mDNS.h>
+#include <WiFiClient.h>
 #include <ArduinoOTA.h>
 #include <ESP8266WebServer.h>           
 #include <LittleFS.h>
